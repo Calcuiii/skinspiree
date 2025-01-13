@@ -16,7 +16,8 @@
         body {
             font-family: 'Arial', sans-serif;
             height: 100vh;
-            background-color: #f4f4f4;
+            background: url('/images/bg.jpg') no-repeat center center fixed;
+            background-size: cover;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -33,7 +34,7 @@
         }
 
         .login-box {
-            background-color: #fff;
+            background-color: rgba(255, 255, 255, 0.9);
             width: 100%;
             max-width: 450px;
             padding: 40px 30px;
