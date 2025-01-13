@@ -15,24 +15,23 @@ class AnggotaSeeder extends Seeder
      */
     public function run()
     {
-        // Data awal untuk tabel anggota
         DB::table('anggota')->insert([
             [
-                'username' => 'admin',
+                'name' => 'admin',
                 'password' => Hash::make('password123'),
                 'role' => 'admin',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'username' => 'user1',
+                'name' => 'user1',
                 'password' => Hash::make('password123'),
                 'role' => 'user',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'username' => 'user2',
+                'name' => 'user2',
                 'password' => Hash::make('password123'),
                 'role' => 'user',
                 'created_at' => now(),

@@ -15,3 +15,13 @@ Route::post('/login', [AuthController::class, 'loginAnggota'])->name('login');
 // Register pengguna
 Route::get('/register', [AuthController::class, 'showRegisterFormAnggota'])->name('register.form');
 Route::post('/register', [AuthController::class, 'register'])->name('register');
+
+// Home route for regular users
+Route::get('/home', function () {
+    return view('home');
+})->name('home');
+
+// Home route for admin users
+Route::get('/admin/home', function () {
+    return view('admin.home');
+})->name('admin.home');

@@ -132,10 +132,10 @@
             <form id="loginForm" method="POST" action="{{ route('login') }}">
                 @csrf
 
-                <!-- Username -->
+                <!-- Name -->
                 <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" id="username" name="username" placeholder="Masukkan Username" required>
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" placeholder="Masukkan Name" required>
                 </div>
 
                 <!-- Password -->

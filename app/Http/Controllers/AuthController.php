@@ -13,28 +13,31 @@ class AuthController extends Controller
     // Proses login
     public function loginAnggota(Request $request)
     {
-        $credentials = $request->only('username', 'password');
+        $credentials = $request->only('name', 'password');
 
         // Log attempt
-        Log::info('Login attempt', $credentials);
+        Log::info('Login attempt', ['name' => $credentials['name']]);
 
-        if (Auth::attempt(['username' => $credentials['username'], 'password' => $credentials['password']])) {
+        if (Auth::attempt($credentials)) {
             $user = Auth::user();
-            Log::info('Login successful for user', ['username' => $user->username, 'role' => $user->role]);
+            Log::info('Login successful for user', ['name' => $user->name, 'role' => $user->role]);
 
-            // Redirect berdasarkan role
-            return response()->json([
-                'status' => 'success',
-                'role' => $user->role,
-                'message' => 'Login berhasil!',
-            ]);
+            // Redirect based on role
+            if ($user->role === 'admin') {
+                return redirect()->route('admin.home')->with('status', 'Login berhasil sebagai Admin!');
+            } elseif ($user->role === 'user') {
+                return redirect()->route('home')->with('status', 'Login berhasil sebagai User!');
+            }
+
+            // Default redirect if role is not recognized
+            return redirect()->route('home')->with('status', 'Login berhasil!');
         }
 
-        // Jika login gagal
-        Log::warning('Login failed for user', ['username' => $credentials['username']]);
+        // If login fails
+        Log::warning('Login failed for user', ['name' => $credentials['name']]);
         return response()->json([
             'status' => 'error',
-            'message' => 'Username atau password salah!',
+            'message' => 'Name atau password salah!',
         ]);
     }
 
@@ -56,8 +59,6 @@ class AuthController extends Controller
         // Validasi input
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email',
-            'username' => 'required|string|unique:users,username',
             'password' => 'required|string|min:8|confirmed',
             'role' => 'required|in:admin,user',  // Validasi role
         ]);
@@ -65,14 +66,12 @@ class AuthController extends Controller
         // Membuat user baru
         $user = Anggota::create([
             'name' => $validatedData['name'],
-            'email' => $validatedData['email'],
-            'username' => $validatedData['username'],
             'password' => Hash::make($validatedData['password']),
             'role' => $validatedData['role'],
         ]);
 
         // Log registration
-        Log::info('User registered successfully', ['username' => $user->username, 'role' => $user->role]);
+        Log::info('User registered successfully', ['name' => $user->name, 'role' => $user->role]);
 
         // Redirect ke halaman login atau halaman lain
         return redirect()->route('login.form')->with('status', 'Registrasi berhasil!');

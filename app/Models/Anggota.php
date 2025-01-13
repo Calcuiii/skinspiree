@@ -13,7 +13,7 @@ class Anggota extends Model
     protected $table = 'anggota';
 
     // Allow mass assignment for these fields
-    protected $fillable = ['username', 'password', 'role']; // Menambahkan 'role' ke dalam fillable
+    protected $fillable = ['name', 'password', 'role']; // Menambahkan 'role' ke dalam fillable
 
     // If you're using timestamps, make sure this is set to true
     public $timestamps = true;
