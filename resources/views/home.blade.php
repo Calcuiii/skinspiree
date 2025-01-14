@@ -1,177 +1,426 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laser Clinic</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <title>{{ $pageTitle }}</title>
+    @vite('resources/sass/app.scss')
     <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #b8755a;
-            color: #333;
+        .navbar.navbar-dark {
+            background-color: rgb(110, 108, 71);
+            color: white;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background-color: #fff;
-            padding: 20px;
+        video {
+            width: 100%;
+            height: 100%;
+            /* Set sesuai dengan tinggi navbar */
+            object-fit: cover;
+            /* Agar video tetap terpotong secara proporsional */
         }
 
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 0;
-        }
-
-        .logo {
-            font-size: 1.5em;
-            font-weight: bold;
-        }
-
-        .nav {
-            display: flex;
-            gap: 20px;
-        }
-
-        .nav a {
-            text-decoration: none;
-            color: #333;
-            font-weight: bold;
-        }
-
-        .hero {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            padding: 20px 0;
-        }
-
-        .hero img {
-            width: 50%;
-            border-radius: 10px;
-        }
-
-        .hero-content {
-            flex: 1;
-        }
-
-        .hero-content h1 {
-            font-size: 2.5em;
-            margin: 0 0 20px;
-        }
-
-        .hero-content p {
-            margin: 0 0 20px;
-        }
-
-        .hero-content .cta {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .cta button {
-            background-color: #b8755a;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
+        .text-overlay {
+            position: absolute;
+            left: 500px;
+            bottom: 100px;
+            color: rgb(61, 58, 34);
+            padding: 0px;
+            /* Mengurangi padding agar tidak terlalu besar */
             border-radius: 5px;
-        }
-
-        .cta button:hover {
-            background-color: #a0624e;
-        }
-
-        .features {
+            font-size: 60px;
             display: flex;
-            justify-content: space-between;
-            margin: 20px 0;
+            flex-direction: column;
+            /* Mengatur gambar di atas tulisan */
+            align-items: center;
         }
 
-        .feature {
+
+        .btn {
+            background-color: rgb(61, 58, 34);
+        }
+
+        .image-container {
+            margin-bottom: 1px;
+            /* Jarak antara gambar dan tulisan */
+        }
+
+        .text-container {
             text-align: center;
-            flex: 1;
         }
 
-        .feature img {
-            width: 40px;
-            height: 40px;
-        }
-
-        .footer {
+        .welcome-text {
             display: flex;
             justify-content: center;
-            gap: 10px;
-            padding: 10px 0;
-        }
-
-        .footer a {
-            text-decoration: none;
+            margin-top: 20px;
+            /* Beri jarak dari video */
+            margin-left: 20px;
+            /* Letakkan di pinggir kiri */
+            margin-bottom: 0px;
+            font-size: 1.5rem;
+            /* Sesuaikan ukuran font */
+            font-weight: bold;
+            /* Buat teks lebih tebal */
             color: #333;
+            /* Warna teks */
         }
 
-        .discount-badge {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            background-color: #b8755a;
-            color: #fff;
-            padding: 10px;
-            border-radius: 5px;
+        .brand {
+            display: flex;
+            margin-left: 10px;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+
+        .containerDes {
+            display: flex;
+            /* Elemen berada di tengah secara horizontal */
+            margin-top: 0px;
+            /* Otomatis menyeimbangkan margin kiri dan kanan */
+            margin-bottom: 5px;
+            /* Lebar container sesuai konten */
+        }
+
+        .allproduct {
+            padding-top: 0px;
+            display: flex;
+            margin: auto;
+        }
+
+
+
+        .produk {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 50px;
+        }
+
+        .product-name {
+            display: flex;
+
+            font-family: 14px;
             font-weight: bold;
         }
+
+        .deskripsi {
+            font-family: 12px;
+
+        }
+
+
+
+        .containerKu {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgb(110, 108, 71);
+            /* Latar belakang hijau */
+            padding: 0px;
+        }
+
+
+        .image-text-container {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 20px;
+            /* Jarak antara gambar dan teks */
+            width: 100%;
+        }
+
+        .image-text-container img {
+            max-width: 400px;
+            height: auto;
+        }
+
+        .text-right {
+            color: white;
+            max-width: 800px;
+        }
+
+        .text-right h4 {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .containerKu2 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgb(151, 149, 100);
+            /* Latar belakang hijau */
+            padding: 0px;
+        }
+
+        .image-text-container2 {
+            display: flex;
+            flex-direction: row-reverse;
+            /* Membalikkan urutan gambar dan teks */
+            align-items: center;
+            justify-content: flex-start;
+            gap: 20px;
+            /* Jarak antara gambar dan teks */
+            width: 100%;
+        }
+
+        .image-text-container2 img {
+            max-width: 400px;
+            height: auto;
+        }
+
+        .text-right2 {
+            color: white;
+            max-width: 800px;
+        }
+
+        .text-right2 h4 {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .nastedBottom {
+            vertical-align: top;
+            color: rgb(61, 58, 34);
+        }
+
+        .footer1 {
+            display: flex;
+            align-items: center;
+            /* Agar logo dan teks sejajar secara vertikal */
+            gap: 5px;
+            /* Memberikan jarak antara logo dan teks */
+            margin-right: 50px;
+            margin-left: 50px;
+            margin-top: 50px;
+        }
+
+        .description {
+            margin-top: 10px;
+            margin-left: 50px;
+            margin-right: 5rem;
+        }
+
+
+        .footer2 {
+            margin-top: 50px;
+            margin-left: 50px;
+        }
+
+        .footer3 {
+            margin-top: 70px;
+            margin-right: 8rem;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .social-icons .icon {
+            font-size: 24px;
+            /* Ukuran ikon */
+            color: #333;
+            /* Warna default ikon */
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .social-icons .icon:hover {
+            color: rgb(110, 108, 71);
+            /* Warna saat hover */
+        }
+        
     </style>
+
 </head>
+
 <body>
-    <div class="container">
-        <div class="header">
-            <div class="logo">LasrClinic</div>
-            <nav class="nav">
-                <a href="#">Home</a>
-                <a href="#">Flowers</a>
-                <a href="#">Address</a>
-                <a href="#">Contact</a>
-                <a href="#">About</a>
-            </nav>
-        </div>
-
-        <div class="hero">
-            <div class="discount-badge">25% OFF</div>
-            <img src="https://via.placeholder.com/500x500" alt="Flawless Skin">
-            <div class="hero-content">
-                <h1>You Deserve Flawless Skin</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                <div class="cta">
-                    <button>Learn More</button>
-                </div>
+    <nav class="navbar navbar-expand-md navbar-dark sticky-top">
+        <div class="container">
+            <a href="{{ route('home') }}" class="navbar-brand mb-0 h1">
+                <img src="{{ Vite::asset('resources/images/llogo.png') }}" alt="Gambar" width="55" height="70">
+            </a>
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <hr class="d-lg-none text-white-50">
+                <ul class="navbar-nav flex-row flex-wrap">
+                    <li class="nav-item col-2 col-md-auto">
+                        <a href="{{ route('home') }}" class="nav-link active">Home</a>
+                    </li>
+                    <li class="nav-item col-2 col-md-auto">
+                        <a href="{{ route('products.index') }}" class="nav-link">Product List</a>
+                    </li>
+                </ul>
+                <hr class="d-lg-none text-white-50">
+                <a href="{{ route('profile') }}" class="btn btn-outline-light my-2 ms-md-auto">
+                    <i class="bi-person-circle me-1"></i>My Profile
+                </a>
             </div>
         </div>
+    </nav>
 
-        <div class="features">
-            <div class="feature">
-                <img src="https://via.placeholder.com/40" alt="Feature 1">
-                <p>Lorem ipsum dolor sit amet, consectetur.</p>
-            </div>
-            <div class="feature">
-                <img src="https://via.placeholder.com/40" alt="Feature 2">
-                <p>Lorem ipsum dolor sit amet, consectetur.</p>
-            </div>
-            <div class="feature">
-                <img src="https://via.placeholder.com/40" alt="Feature 3">
-                <p>Lorem ipsum dolor sit amet, consectetur.</p>
-            </div>
+    <video autoplay muted loop>
+        <source src="{{ Vite::asset('resources/video/video.mp4') }}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <div class="text-overlay">
+        <div class="image-container">
+            <img src="{{ Vite::asset('resources/images/llogo.png') }}" alt="Gambar" width="300" height="350">
         </div>
-
-        <div class="footer">
-            <a href="#"><img src="https://via.placeholder.com/20" alt="Twitter"></a>
-            <a href="#"><img src="https://via.placeholder.com/20" alt="WhatsApp"></a>
-            <a href="#"><img src="https://via.placeholder.com/20" alt="Facebook"></a>
-            <a href="#"><img src="https://via.placeholder.com/20" alt="Instagram"></a>
+        <div class="text-container">
+            <b>Skinspire Skincare</b>
+        </div>
+        <div class="button-shop">
+            <div class="d-grid gap-2">
+                <a class="btn btn-dark" href="{{ route('products.index') }}">Shop Now
+                    <i class="bi bi-arrow-right"></i></a>
+            </div>
         </div>
     </div>
+
+    <div class="welcome-text">
+        <h3>Popular Categories</h3>
+        <p class="brand">By Skinspire Skincare</p>
+    </div>
+
+    <div class="containerDes">
+        <div class="allproduct">
+
+            <div class="produk">
+                <a>
+                    <img src="{{ Vite::asset('resources/images/produk1.jpg') }}" alt="Gambar" width="200">
+                </a>
+                <p class="product-name">Serum Skinspire</p>
+                <p class="deskripsi">Merawat kelembapan <br>dan kecerahan wajah</p>
+            </div>
+            <div class="produk">
+                <a>
+                    <img src="{{ Vite::asset('resources/images/produk2.jpg') }}" alt="Gambar" width="200">
+                </a>
+                <p class="product-name">Toner Skinspire</p>
+                <p class="deskripsi">Menyegarkan, menyeimbangkan <br>pH kulit, dan membersihkan sisa <br>kotoran</p>
+            </div>
+            <div class="produk">
+                <a>
+                    <img src="{{ Vite::asset('resources/images/produk3.jpg') }}" alt="Gambar" width="200">
+                </a>
+                <p class="product-name">Lulur Skinspire</p>
+                <p class="deskripsi">Melembapkan, menghaluskan,<br> dan mencerahkan kulit</p>
+            </div>
+        </div>
+    </div>
+    <div class="containerKu">
+        <div class="image-text-container">
+            <img src="{{ Vite::asset('resources/images/deskripsi1.jpg') }}" alt="Gambar" width="400"
+                height="200">
+            <div class="text-right">
+                <h4>Serum Skinspire</h4>
+                <h6 style="color: rgb(31, 30, 30)">Description Product</h6>
+                <p>Serum Wajah Skinspire dirancang khusus dengan formula bahan yang berkualitas tinggi, sehingga dapat
+                    memberikan perawatan kulit yang mendalam dan efektif. Serum ini menargetkan berbagai permasalahan
+                    kulit secara spesifik, seperti jerawat meradang, bruntusan, hiperpigmentasi, dan memberikan hasil
+                    optimal dalam waktu singkat.</p>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="containerKu2">
+        <div class="image-text-container2">
+            <img src="{{ Vite::asset('resources/images/deskripsi2.jpg') }}" alt="Gambar" width="400"
+                height="200">
+            <div class="text-right2">
+                <h4>Toner Skinspire</h4>
+                <h6 style="color: rgb(31, 30, 30)">Description Product</h6>
+                <p>Produk perawatan kulit yang dapat menyegarkan dan menyeimbangkan pH kulit. Dengan formula ringan dan
+                    bebas
+                    alkohol, toner ini dapat memberikan kelembapan tambahan tanpa meninggalkan rasa lengket, cocok
+                    dengan
+                    berbagai jenis kulit, dan tidak meninggalkan kesan kusam di wajah.</p>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="containerKu">
+        <div class="image-text-container">
+            <img src="{{ Vite::asset('resources/images/deskripsi3.jpg') }}" alt="Gambar" width="400"
+                height="200">
+            <div class="text-right">
+                <h4>Lotion Skinspire</h4>
+                <h6 style="color: rgb(31, 30, 30)">Description Product</h6>
+                <p>Nikmati sensasi perawatan tubuh mewah dengan Lulur Skinspire, lulur premium yang dirancang khusus
+                    dapat
+                    memberikan kelembutan dan kecerahan alami pada kulit. Terbuat dari bahan-bahan alami pilihan,
+                    lulur ini mengandung kombinasi scrub halus untuk mengangkat sel kulit mati, minyak esensial untuk
+                    melembapkan, serta ekstrak tumbuhan yang kaya antioksidan.</p>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <tr>
+        <td>
+            <table class="">
+                <tr class="nastedBottom">
+                    <td>
+                        <div class="footer1">
+                            <img src="{{ Vite::asset('resources/images/llogo.png') }}" alt="Gambar" width="55" height="70">
+                            <h3><strong>Skinspire Skincare</strong></h3>
+                        </div>
+                        <div class="description">
+                            <p>
+                                Temukan ekspresi kecantikanmu dengan produk Skinspire Skincare, skincare yang dapat digunakan untuk 
+                                berbagai jenis kulit, merawat kesehatan kulit, dan membuat kulit lebih cerah. Dengan menggunakan bahan 
+                                alami berkualitas tinggi, Skinspire Skincare dirancang untuk memberikan perawatan terbaik bagi kulitmu. 
+                                Produk ini tidak hanya membantu menjaga kelembapan alami kulit, tetapi juga melindungi dari pengaruh 
+                                buruk lingkungan. Rasakan sensasi kulit yang lebih sehat, bercahaya, dan terawat dengan Skinspire 
+                                Skincare, solusi sempurna untuk kebutuhan kulitmu
+
+                            </p>
+                        </div>
+
+                        <div class="footer2">
+                            <h4>Follow Us</h4>
+                            <div class="social-icons">
+                                <a href="https://www.instagram.com" target="_blank" class="icon">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a href="https://www.twitter.com" target="_blank" class="icon">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="https://www.tiktok.com" target="_blank" class="icon">
+                                    <i class="fab fa-tiktok"></i>
+                                </a>
+                                <a href="https://www.youtube.com" target="_blank" class="icon">
+                                    <i class="fab fa-youtube"></i>
+                                </a>
+                                <a href="https://www.facebook.com" target="_blank" class="icon">
+                                    <i class="fab fa-facebook"></i>
+                                </a>
+                            </div>
+                        </div>
+
+
+                    </td>
+                    <td>
+                        <div class="footer3">
+                            <h4>Layanan Informasi</h4>
+                            <p>Jl. Ketintang No. 156, Ketintang, Kec. Gayungan, Surabaya, Jawa Timur 60231</p>
+                            <p>E-mail: skinspireSkincare@gmail.com</p>
+                            <p>Telepon: +6281-2345-6789</p>
+                    </td>
+                </tr>
+            </table>
+            </div>
+            @vite('resources/js/app.js')
 </body>
+
 </html>
