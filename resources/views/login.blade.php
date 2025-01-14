@@ -3,9 +3,11 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Skinspire</title>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @vite('resources/sass/app.scss')
+
     <style>
         * {
             margin: 0;
@@ -14,7 +16,7 @@
         }
 
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: Arial, sans-serif;
             height: 100vh;
             background: url('/images/bg.jpg') no-repeat center center fixed;
             background-size: cover;
@@ -28,97 +30,77 @@
             justify-content: center;
             align-items: center;
             width: 100%;
-            max-width: 1000px;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            max-width: 900px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
         }
 
         .login-box {
-            background-color: rgba(255, 255, 255, 0.9);
-            width: 100%;
-            max-width: 450px;
+            background-color: rgba(50, 48, 48, 0.8);
+            color: white;
             padding: 40px 30px;
             border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            width: 100%;
+            max-width: 450px;
+            z-index: 1;
         }
 
-        .login-box h1 {
-            font-size: 28px;
-            margin-bottom: 20px;
-            color: #333;
+        h1 {
             text-align: center;
+            margin-bottom: 20px;
+            font-size: 30px;
         }
 
-        .login-box p {
-            font-size: 14px;
-            color: #666;
+        p {
+            text-align: center;
             margin-bottom: 30px;
-            text-align: center;
         }
 
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            color: #333;
+        label {
+            color: white;
             font-weight: bold;
         }
 
-        .form-group input,
-        .form-group select {
+        input,
+        select {
             width: 100%;
             padding: 12px;
-            border: 1px solid #ddd;
+            margin: 12px 0;
             border-radius: 5px;
+            border: 1px solid #ccc;
             font-size: 16px;
-            color: #555;
+            color: #333;
         }
 
-        .form-group input:focus,
-        .form-group select:focus {
-            border-color: #3d3a22;
-            outline: none;
-        }
-
-        .btn-submit {
-            background-color: #3d3a22;
-            color: #fff;
-            padding: 14px;
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #6e6c47;
+            color: white;
             border: none;
             border-radius: 5px;
-            font-size: 16px;
-            width: 100%;
             cursor: pointer;
+            font-size: 16px;
         }
 
-        .btn-submit:hover {
-            background-color: #6e6c47;
+        button:hover {
+            background-color: #3d3a22;
         }
 
         .link-register {
             text-align: center;
-            margin-top: 20px;
+            margin-top: 15px;
         }
 
         .link-register a {
-            color: #3d3a22;
+            color: #6e6c47;
             text-decoration: none;
-            font-size: 14px;
         }
 
         .link-register a:hover {
             text-decoration: underline;
-        }
-
-        /* Responsive Design */
-        @media screen and (max-width: 768px) {
-            .login-container {
-                flex-direction: column;
-                padding: 20px;
-            }
         }
     </style>
 </head>
@@ -166,51 +148,40 @@
     </div>
 
     <script>
-        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+        document.getElementById('loginForm').addEventListener('submit', (e) => {
             e.preventDefault();
 
             const formData = new FormData(e.target);
             const role = formData.get('role');
 
             if (!role) {
-                Swal.fire({
-                    icon: 'warning',
-                    title: 'Pilih Role!',
-                    text: 'Silakan pilih role sebelum login.',
-                });
+                alert('Silakan pilih role sebelum login.');
                 return;
             }
 
-            try {
-                const response = await fetch(e.target.action, {
-                    method: 'POST',
-                    body: formData,
-                });
-
-                const result = await response.json();
-                Swal.fire({
-                    icon: result.status === 'success' ? 'success' : 'error',
-                    title: result.status === 'success' ? 'Berhasil!' : 'Gagal!',
-                    text: result.message,
-                });
-
+            fetch(e.target.action, {
+                method: 'POST',
+                body: formData,
+            })
+            .then(response => response.json())
+            .then(result => {
                 if (result.status === 'success') {
                     if (result.role === 'admin') {
-                        window.location.href = '/admin-dashboard';
+                        window.location.href = '/dashboard';
                     } else if (result.role === 'user') {
-                        window.location.href = '/user-dashboard';
+                        window.location.href = '/home';
                     }
+                } else {
+                    alert('Login gagal! ' + result.message);
                 }
-            } catch (error) {
+            })
+            .catch(error => {
                 console.error(error);
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Terjadi kesalahan! Coba lagi nanti.',
-                });
-            }
+                alert('Terjadi kesalahan! Coba lagi nanti.');
+            });
         });
     </script>
+    @vite('resources/js/app.js')
 </body>
 
 </html>

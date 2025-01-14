@@ -13,18 +13,18 @@ class AuthController extends Controller
     // Proses login
     public function loginAnggota(Request $request)
     {
-        $credentials = $request->only('name', 'password');
+        $credentials = $request->only('name', 'password', 'role');
 
         // Log attempt
-        Log::info('Login attempt', ['name' => $credentials['name']]);
+        Log::info('Login attempt', ['name' => $credentials['name'], 'role' => $credentials['role']]);
 
-        if (Auth::attempt($credentials)) {
+        if (Auth::attempt(['name' => $credentials['name'], 'password' => $credentials['password']])) {
             $user = Auth::user();
             Log::info('Login successful for user', ['name' => $user->name, 'role' => $user->role]);
 
             // Redirect based on role
             if ($user->role === 'admin') {
-                return redirect()->route('admin.home')->with('status', 'Login berhasil sebagai Admin!');
+                return redirect()->route('dashboard')->with('status', 'Login berhasil sebagai Admin!');
             } elseif ($user->role === 'user') {
                 return redirect()->route('home')->with('status', 'Login berhasil sebagai User!');
             }

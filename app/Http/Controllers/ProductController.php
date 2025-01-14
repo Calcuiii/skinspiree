@@ -7,6 +7,9 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use PDF;
+use App\Models\Order;
+
 
 class ProductController extends Controller
 {
@@ -68,18 +71,21 @@ class ProductController extends Controller
         // Upload Image
         if ($request->hasFile('image')) {
             $image = $request->file('image');
-            $image->storeAs('public/products', $image->hashName()); // Store image in storage/app/public/products
+            $imageName = $image->hashName(); // Menggunakan nama unik untuk file
+            $image->move(public_path('images/products'), $imageName); // Menyimpan di public/images/products
         } else {
             return redirect()->back()->withErrors(['image' => 'Gambar produk harus diunggah.'])->withInput();
         }
 
+
         // Simpan ke Database
         Product::create([
-            'image' => $image->hashName(), // Store the image name in the database
+            'image' => 'images/products/' . $imageName, // Simpan path relatif
             'name' => $request->name,
             'price' => $request->price,
             'stock' => $request->stock,
         ]);
+
 
         // Redirect dengan Pesan Sukses
         return redirect()->route('products.index')->with('success', 'Produk berhasil ditambahkan!');

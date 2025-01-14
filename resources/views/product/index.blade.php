@@ -37,7 +37,7 @@
             position: absolute;
             left: 650px;
             top: 20px;
-            color: rgb(61, 58, 34);
+            color: rgb(255, 252, 214);
             padding: 0px;
             /* Mengurangi padding agar tidak terlalu besar */
             border-radius: 5px;
@@ -138,7 +138,7 @@
 <body>
     <nav class="navbar navbar-expand-md navbar-dark sticky-top">
         <div class="container">
-            <a href="{{ route('home') }}" class="navbar-brand mb-0 h1">
+            <a href="{{ route('dashboard') }}" class="navbar-brand mb-0 h1">
                 <img src="{{ Vite::asset('resources/images/llogo.png') }}" alt="Gambar" width="55" height="70">
             </a>
             <button type="button" class="navbar-toggler" data-bs-toggle="collapse"
@@ -149,7 +149,7 @@
                 <hr class="d-lg-none text-white-50">
                 <ul class="navbar-nav flex-row flex-wrap">
                     <li class="nav-item col-2 col-md-auto">
-                        <a href="{{ route('home') }}" class="nav-link active">Home</a>
+                        <a href="{{ route('dashboard') }}" class="nav-link active">Home</a>
                     </li>
                     <li class="nav-item col-2 col-md-auto">
                         <a href="{{ route('products.index') }}" class="nav-link">Product List</a>
@@ -211,8 +211,8 @@
                     <tbody>
                         @foreach ($products as $product)
                             <tr>
-                                <td><img src="{{ asset('/storage/products/'.$product->image) }}" class="rounded" alt="Gambar Produk"
-                                        width="100"></td>
+                                <td><img src="{{ asset($product->image) }}" alt="{{ $product->name }}" class="rounded" width="100">
+                                </td>
                                 <td>{{ $product->name }}</td>
                                 <td>{{ $product->price }}</td>
                                 <td>{{ $product->stock }}</td>
