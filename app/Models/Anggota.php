@@ -3,18 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Anggota extends Model
+class Anggota extends Authenticatable
 {
     use HasFactory;
 
-    // Specify the table name
     protected $table = 'anggota';
-
-    // Allow mass assignment for these fields
-    protected $fillable = ['name', 'password', 'role']; // Menambahkan 'role' ke dalam fillable
-
-    // If you're using timestamps, make sure this is set to true
+    protected $fillable = ['name', 'password', 'role'];    
     public $timestamps = true;
 }

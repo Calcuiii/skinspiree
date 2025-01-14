@@ -18,21 +18,21 @@ class AnggotaSeeder extends Seeder
         DB::table('anggota')->insert([
             [
                 'name' => 'admin',
-                'password' => Hash::make('password123'),
+                'password' => bcrypt('123456'),
                 'role' => 'admin',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'name' => 'user1',
-                'password' => Hash::make('password123'),
+                'name' => 'karina',
+                'password' => bcrypt('123456'),
                 'role' => 'user',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'name' => 'user2',
-                'password' => Hash::make('password123'),
+                'name' => 'billa',
+                'password' => bcrypt('123456'),
                 'role' => 'user',
                 'created_at' => now(),
                 'updated_at' => now(),

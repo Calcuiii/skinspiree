@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    function index()
+    // Home view for admin
+    public function index()
     {
-        $pageTitle = 'Home';
-        return view('home', ['pageTitle' => $pageTitle]);
+        $pageTitle = 'Dashboard Skinspire';
+        return view('dashboard', ['pageTitle' => $pageTitle]);
     }
 }

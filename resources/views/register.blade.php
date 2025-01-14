@@ -137,6 +137,7 @@
             <h1>Welcome Beauties!</h1>
             <p>Welcome to Skinspire! Register now for a modern and elegant skincare shopping experience.</p>
             <form id="registerForm" action="{{ route('register') }}" method="POST">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 @csrf
                 <div>
                     <label for="name">Name:</label>
@@ -169,55 +170,5 @@
     </div>
 
     @vite('resources/js/app.js')
-
-    <script>
-        // Handle the form submission and redirect on success
-        document.getElementById('registerForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-
-            const formData = new FormData(e.target);
-
-            try {
-                const response = await fetch(e.target.action, {
-                    method: 'POST',
-                    body: formData,
-                    headers: {
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}', // CSRF Token
-                        'Accept': 'application/json', // Memberikan response dalam format JSON
-                    },
-                });
-
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-
-                const result = await response.json();
-
-                if (result.status === 'success') {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Registration Successful!',
-                        text: 'You can now log in to your account.',
-                    }).then(() => {
-                        window.location.href = "{{ route('login') }}"; // Redirect to login page
-                    });
-                } else {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Registration Failed!',
-                        text: result.message || 'Please try again.',
-                    });
-                }
-            } catch (error) {
-                console.error(error);
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'An error occurred. Please try again later.',
-                });
-            }
-        });
-    </script>
 </body>
-
 </html>

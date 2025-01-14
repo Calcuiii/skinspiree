@@ -243,8 +243,8 @@
 <body>
     <nav class="navbar navbar-expand-md navbar-dark sticky-top">
         <div class="container">
-            <a href="{{ route('home') }}" class="navbar-brand mb-0 h1">
-                <img src="{{ Vite::asset('resources/images/llogo.png') }}" alt="Gambar" width="55" height="70">
+            <a href="{{ route('dashboard') }}" class="navbar-brand mb-0 h1">
+                <img src="{{ asset('images/llogo.png') }}" alt="Gambar" width="55" height="70">
             </a>
             <button type="button" class="navbar-toggler" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent">
@@ -254,7 +254,7 @@
                 <hr class="d-lg-none text-white-50">
                 <ul class="navbar-nav flex-row flex-wrap">
                     <li class="nav-item col-2 col-md-auto">
-                        <a href="{{ route('home') }}" class="nav-link active">Home</a>
+                        <a href="{{ route('dashboard') }}" class="nav-link active">Home</a>
                     </li>
                     <li class="nav-item col-2 col-md-auto">
                         <a href="{{ route('products.index') }}" class="nav-link">Product List</a>
@@ -275,14 +275,14 @@
 
     <div class="text-overlay">
         <div class="image-container">
-            <img src="{{ Vite::asset('resources/images/llogo.png') }}" alt="Gambar" width="300" height="350">
+            <img src="{{ asset('images/llogo.png') }}" alt="Gambar" width="300" height="350">
         </div>
         <div class="text-container">
             <b>Skinspire Skincare</b>
         </div>
         <div class="button-shop">
             <div class="d-grid gap-2">
-                <a class="btn btn-dark" href="{{ route('products.index') }}">Shop Now
+                <a class="btn btn-dark" href="{{ route('products.index') }}">Detail Product
                     <i class="bi bi-arrow-right"></i></a>
             </div>
         </div>
@@ -298,21 +298,21 @@
 
             <div class="produk">
                 <a>
-                    <img src="{{ Vite::asset('resources/images/produk1.jpg') }}" alt="Gambar" width="200">
+                    <img src="{{ asset('images/produk1.jpg') }}" alt="Gambar" width="200">
                 </a>
                 <p class="product-name">Serum Skinspire</p>
                 <p class="deskripsi">Merawat kelembapan <br>dan kecerahan wajah</p>
             </div>
             <div class="produk">
                 <a>
-                    <img src="{{ Vite::asset('resources/images/produk2.jpg') }}" alt="Gambar" width="200">
+                    <img src="{{ asset('images/produk2.jpg') }}" alt="Gambar" width="200">
                 </a>
                 <p class="product-name">Toner Skinspire</p>
                 <p class="deskripsi">Menyegarkan, menyeimbangkan <br>pH kulit, dan membersihkan sisa <br>kotoran</p>
             </div>
             <div class="produk">
                 <a>
-                    <img src="{{ Vite::asset('resources/images/produk3.jpg') }}" alt="Gambar" width="200">
+                    <img src="{{ asset('images/produk3.jpg') }}" alt="Gambar" width="200">
                 </a>
                 <p class="product-name">Lulur Skinspire</p>
                 <p class="deskripsi">Melembapkan, menghaluskan,<br> dan mencerahkan kulit</p>
@@ -321,7 +321,7 @@
     </div>
     <div class="containerKu">
         <div class="image-text-container">
-            <img src="{{ Vite::asset('resources/images/deskripsi1.jpg') }}" alt="Gambar" width="400"
+            <img src="{{ asset('images/produk6.jpg') }}" alt="Gambar" width="400"
                 height="200">
             <div class="text-right">
                 <h4>Serum Skinspire</h4>
@@ -336,7 +336,7 @@
     <hr>
     <div class="containerKu2">
         <div class="image-text-container2">
-            <img src="{{ Vite::asset('resources/images/deskripsi2.jpg') }}" alt="Gambar" width="400"
+            <img src="{{ asset('images/produk5.jpg') }}" alt="Gambar" width="400"
                 height="200">
             <div class="text-right2">
                 <h4>Toner Skinspire</h4>
@@ -352,7 +352,7 @@
     <hr>
     <div class="containerKu">
         <div class="image-text-container">
-            <img src="{{ Vite::asset('resources/images/deskripsi3.jpg') }}" alt="Gambar" width="400"
+            <img src="{{ asset('images/produk4.jpg') }}" alt="Gambar" width="400"
                 height="200">
             <div class="text-right">
                 <h4>Lotion Skinspire</h4>
